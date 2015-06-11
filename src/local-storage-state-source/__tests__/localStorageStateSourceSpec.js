@@ -35,13 +35,13 @@ describeStyles('LocalStorageStateSource', function (styles) {
     });
 
     it('should store data under key in localStorage', function () {
-      expect(localStorage.getItem('foo')).to.equal('bar');
+      expect(localStorage.getItem('foo')).to.equal('"bar"');
     });
   });
 
   describe('#get()', function () {
     beforeEach(function () {
-      localStorage.setItem('foo', 'bar');
+      localStorage.setItem('foo', '"bar"');
     });
 
     it('should retrieve data under key in localStorage', function () {
@@ -93,7 +93,7 @@ describeStyles('LocalStorageStateSource', function (styles) {
     describe('when you pass in a namespace', function () {
       describe('when retrieving data', function () {
         beforeEach(function () {
-          localStorage.setItem('bazfoo', 'bar');
+          localStorage.setItem('bazfoo', '"bar"');
         });
 
         it('should prepend namespace to key', function () {
@@ -107,7 +107,7 @@ describeStyles('LocalStorageStateSource', function (styles) {
         });
 
         it('should prepend namespace to key', function () {
-          expect(localStorage.getItem('bazfoo')).to.equal('bar');
+          expect(localStorage.getItem('bazfoo')).to.equal('"bar"');
         });
       });
     });
