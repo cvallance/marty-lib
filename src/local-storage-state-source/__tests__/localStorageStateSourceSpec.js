@@ -49,6 +49,26 @@ describeStyles('LocalStorageStateSource', function (styles) {
     });
   });
 
+  describe('#set(object)', function () {
+    beforeEach(function () {
+      source.set('fooObj', { foo: 'bar' });
+    });
+
+    it('should store the json serialized data under key in localStorage', function () {
+      expect(localStorage.getItem('fooObj')).to.equal(JSON.stringify({ foo: 'bar' }));
+    });
+  });
+
+  describe('#get(object)', function () {
+    beforeEach(function () {
+      localStorage.setItem('fooObj', JSON.stringify({ foo: 'bar' }));
+    });
+
+    it('should retrieve the data under key in localStorage and return an object', function () {
+      expect(source.get('fooObj')).to.eql({ foo: 'bar' });
+    });
+  });
+
   describe('#namespace', function () {
     beforeEach(function () {
       var Source = styles({
